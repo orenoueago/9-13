@@ -2,6 +2,7 @@ var ary2d=[[0,1,2,3],[4,5,6],[7,8,9]];
 var Ans=[0,1,2,3,4,5,6,7,8,9];
 //get index 0 at Ans:    Ans[0]
 //get 6 in ary2d?
+<<<<<<< HEAD
 //ary2d[1][2];
 
 //ary2d[1].push("N");
@@ -25,3 +26,6 @@ for(var _raw=0;_raw<row;_raw++)
         dynaAry2d[_raw].push(_col+_raw*col);
     }
 }
+=======
+ary2d[1][2];
+>>>>>>> 31c14a2964e7c4bddca6c7326b3dfe96c0cacab7
