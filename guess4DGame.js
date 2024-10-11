@@ -9,6 +9,8 @@ for(var i=0;i<4;i++)
     Ans[rand] = temp;
 }
 
+Ans = Ans.slice(0,4);
+
 var gCount = 10;
 do
 {
