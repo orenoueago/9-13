@@ -11,7 +11,7 @@ var col=ary2d[0].length;
 
 
 var canvas = document.getElementById("map").getContext("2d");
-var size=Math.min(canvas.canvas.high/row,canvas.canvas.width/row);
+var size=Math.min(canvas.canvas.height/row,canvas.canvas.width/col);
 for(var _row=0;_row<row;_row++)
 {
     for(var _col=0;_col<col;_col++)
@@ -25,4 +25,11 @@ for(var _row=0;_row<row;_row++)
         canvas.fillRect(_col*size,_row*size,size,size);
         canvas.strokeRect(_col*size,_row*size,size,size);
     }
+}
+
+
+function neighbor(_row,_col){
+    var count = 0;
+
+    return;
 }
