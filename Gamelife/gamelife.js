@@ -26,12 +26,12 @@ class Life{
         var neighbor;
         for (let _row = 0; _row < this.row; _row++) {
            for (let _col = 0; _col < this.row; _col++) {
-            neighbor = neighborCount(_row,_col);
+            neighbor = this.neighborCount(_row,_col);
             //update by 4 rules
-            if(getStatusAt(_row,_col)==Live && (neighbor<=1 || neighbor>=4)){
+            if(this.getStatusAt(_row,_col)==Live && (neighbor<=1 || neighbor>=4)){
                 nextGrid[_row][_col] == Dead;
             }
-            if(getStatusAt(_row,_col)==Dead && neighbor==3){
+            if(this.getStatusAt(_row,_col)==Dead && neighbor==3){
                nextGrid[_row][_col]==Live;
             }
            } 
@@ -44,16 +44,16 @@ class Life{
 
      neighborCount = function(row,col){
         var count=0;
-        count += getStatusAt(row-1, col-1);
-        count += getStatusAt(row-1, col);
-        count += getStatusAt(row-1, col+1);
+        count += this.getStatusAt(row-1, col-1);
+        count += this.getStatusAt(row-1, col);
+        count += this.getStatusAt(row-1, col+1);
 
-        count += getStatusAt(row, col-1);
-        count += getStatusAt(row, col+1);
+        count += this.getStatusAt(row, col-1);
+        count += this.getStatusAt(row, col+1);
 
-        count += getStatusAt(row+1, col-1);
-        count += getStatusAt(row+1, col);
-        count += getStatusAt(row+1, col+1);
+        count += this.getStatusAt(row+1, col-1);
+        count += this.getStatusAt(row+1, col);
+        count += this.getStatusAt(row+1, col+1);
         return count;
      }
      getStatusAt = function(row,col){
@@ -64,13 +64,33 @@ class Life{
         }
      }
 }
+function drawGrid(game) {
+    var elementscanvas = document.getElementById("map");
+    var canvas = elementscanvas.getContext("2d");
+    var size = Math.min(elementscanvas.height / game.row, elementscanvas.width / game.col);
+
+    for (var _row = 0; _row < game.row; _row++) {
+        for (var _col = 0; _col < game.col; _col++) {
+            if (game.grid[_row][_col] == Live) {
+                canvas.fillStyle = "#ffffff";
+            } else {
+                canvas.fillStyle = "#000000";
+            }
+            canvas.fillRect(_col * size, _row * size, size, size);
+            canvas.strokeRect(_col * size, _row * size, size, size);
+        }
+    }
+}
 
 Life.prototype.update = function(){
 
 }
 
 
-var myGame = new Life(10,10);
+var myGame = new Life(100,100);
 var myGame2 = new Life(100,100);
 myGame.initialize();
+drawGrid(myGame);
 myGame.update();
+drawGrid(myGame);
+//myGame.draw();
