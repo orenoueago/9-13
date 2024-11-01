@@ -6,7 +6,12 @@
     <title>Game Of Life</title>
 </head>
 <body>
-    <canvas id="map" width="600px" height="600px"> </canvas>
+    <canvas id="map" width="600px" height="600px" onclick="mouseclick(event)"> </canvas>
+    <button onclick="NEXT()">Next</button>
+    <button onclick="Random()">Random</button>
+    <input type="number" min="100" max="1000" step="100" value="100" id="step">
+    <button onclick="Run()">RUN</button>
+    <button onclick="Stop()">STOP</button>
 </body>
 <script src="gamelife.js"> </script>
 </html>
