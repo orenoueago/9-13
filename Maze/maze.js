@@ -18,7 +18,7 @@ class Point{
         this.col = _col;
     }
     isEnd = function(){
-        return this.row == end.row && this.col == end.col
+        return this.row === end.row && this.col === end.col
     }
 }
 var start = new Point(0,0);
@@ -39,31 +39,32 @@ dir.sort((a,b)=>{return Math.random()-0.5});
 
 function go(){
     Stack.push(step);
+    const Interval = setInterval(()=>{
     while(! step.isEnd()){
         drawGrid()
         MAZE[step.row][step.col] = 2;
-        if(MAZE[step.row + dir[0].x][step.col + dir[0].y] == 0){        //up
+        if(MAZE[step.row + dir[0].x][step.col + dir[0].y] == 0){        
             if(rollback){
                 Stack.push(step)
                 rollback=false;
             }
             step = new Point(step.row + dir[0].x, step.col + dir[0].y);
             Stack.push(step);
-        }else if(MAZE[step.row + dir[1].x][step.col + dir[1].y] == 0){     //down
+        }else if(MAZE[step.row + dir[1].x][step.col + dir[1].y] == 0){     
             if(rollback){
                 Stack.push(step)
                 rollback=false;
             }
             step = new Point(step.row + dir[1].x, step.col + dir[1].y);
             Stack.push(step);
-        }else if(MAZE[step.row + dir[2].x][step.col + dir[2].y] == 0){     //left
+        }else if(MAZE[step.row + dir[2].x][step.col + dir[2].y] == 0){     
             if(rollback){
                 Stack.push(step)
                 rollback=false;
             }
             step = new Point(step.row + dir[2].x, step.col + dir[2].y);
             Stack.push(step);
-        }else if(MAZE[step.row + dir[3].x][step.col + dir[3].y] == 0){     //right
+        }else if(MAZE[step.row + dir[3].x][step.col + dir[3].y] == 0){     
             if(rollback){
                 Stack.push(step)
                 rollback=false;
@@ -76,14 +77,14 @@ function go(){
                 rollback=true;
             }else
                break;
-        
+    
     }
     if(Stack.length>0)
         console.log("done!");
     else
         console.log("Not solution yet");
+ },1000);
 }
-
 function drawGrid() {
     var elementscanvas = document.getElementById("map");
     var canvas = elementscanvas.getContext("2d");
@@ -96,7 +97,7 @@ function drawGrid() {
             } else if (MAZE[_row][_col] == 1){
                 canvas.fillStyle = "#ffffff";
             }else if (MAZE[_row][_col] == 2){
-                canvas.fillStyle = "#0000ff";
+                canvas.fillStyle = "#f00fff";
             }
             canvas.fillRect(_col * size, _row * size, size, size);
             canvas.strokeRect(_col * size, _row * size, size, size);
@@ -104,4 +105,3 @@ function drawGrid() {
     }
 }
 
-go();
