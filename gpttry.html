@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>清單管理器</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #taskList { margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>清單管理器</h1>
+    <input type="text" id="taskInput" placeholder="輸入任務并按下 Enter">
+    <button onclick="addTask()">添加任務</button>
+    <button onclick="sortTasks()">排序任務</button>
+
+    <ul id="taskList"></ul>
+
+    <script>
+        let tasks = [];
+
+        function addTask() {
+            const taskInput = document.getElementById('taskInput');
+            const task = taskInput.value.trim();
+            if (task) {
+                tasks.push(task);
+                taskInput.value = '';
+                updateTaskList();
+            }
+        }
+
+        function sortTasks() {
+            tasks.sort();
+            updateTaskList();
+        }
+
+        function updateTaskList() {
+            const taskList = document.getElementById('taskList');
+            taskList.innerHTML = '';
+            tasks.forEach((task, index) => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${index + 1}. ${task}`;
+                taskList.appendChild(listItem);
+            });
+        }
+
+        // 添加鍵盤事件，允許通過 Enter 鍵添加任務
+        document.getElementById('taskInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addTask();
+            }
+        });
+    </script>
+</body>
+</html>
